@@ -33,8 +33,9 @@ function paintToCanvas() {
     let pixels = ctx.getImageData(0, 0, width, height); 
     // mess with them
     // pixels = redEffect(pixels);
-    pixels = rgbSplit(pixels);
+    // pixels = rgbSplit(pixels);
     // ctx.globalAlpha = 0.1 // creates ghosting effect
+    greenScreen(pixels);
     // put them back
     ctx.putImageData(pixels, 0, 0);
   }, 20);
@@ -85,7 +86,24 @@ function greenScreen(pixels) {
     levels[input.name] = input.value;
   });
 
-  console.log(levels);
+  for (i = 0; i < pixels.data.length; i += 4) {
+    red = pixels.data[i + 0];
+    green = pixels.data[i + 1];
+    blue = pixels.data[i + 2];
+    alpha = pixels.data[i + 3];
+
+    // if any of the rgb values are inbetween the min and max values, take it out!
+    if (red >= levels.rmin
+      && green >= levels.gmin
+      && blue >= levels.bmin
+      && red <= levels.rmax
+      && green <= levels.gmax
+      && blue <= levels.bmax) {
+        // setting the alpha to 0 makes it totally transparent
+        pixels.data[i + 3] = 0;
+    }
+  }
+  return pixels;
 }
 
 getVideo();
