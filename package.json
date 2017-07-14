@@ -1,0 +1,22 @@
+{
+  "name": "webcam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/script.js",
+  "scripts": {
+    "start": "browser-sync start --server --files '*.css, *.html, *.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricSnell/js30-webcam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EricSnell/js30-webcam/issues"
+  },
+  "homepage": "https://github.com/EricSnell/js30-webcam#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.12"
+  }
+}
