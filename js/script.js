@@ -6,7 +6,13 @@
   const strip = document.querySelector('.strip');
   const snap = document.querySelector('.snap');
 
-  
+  // Access users webcam
+  function getVideo() {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then(localMediaStream => {
+        console.log(localMediaStream);
+      })
+  }
 
 
   
